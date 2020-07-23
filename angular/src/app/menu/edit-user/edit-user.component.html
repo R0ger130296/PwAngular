@@ -1,0 +1,89 @@
+
+<section
+      class="homescreen m-0 flex flex-col w-screen justify-center bg-gray-800 h-screen text-gray-100 "
+    >
+      <nav>
+        <ul class="flex justify-between text-xl py-8 px-8 md:px-48 ">
+          <li>
+          Edit User
+          </li>
+          <li>
+            <a href="https://github.com/Icesofty" target="_blank" rel="noopener noreferrer">Nuevo 💚 Usuario</a>
+          </li>
+        </ul>
+      </nav>
+
+      <h1>
+        <div class="px-40">
+        <form  [formGroup]="createuserForm" class="w-full max-w-lg">
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Nombre
+        </label>
+        <input formControlName='nombre' [(ngModel)]="user.nombre"  name="nombre"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  type="text">
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Apellido
+        </label>
+        <input formControlName='apellido' [(ngModel)]="user.apellido" name="apellido" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text">
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Email
+        </label>
+        <input formControlName='email' [(ngModel)]="user.email" name="email" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="email">
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Edad
+        </label>
+        <input  formControlName='edad' [(ngModel)]="user.edad" name="edad" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="number">
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3 mb-2">
+    <!--  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+          Password
+        </label>
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Password">
+      </div>
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Confirm Password
+        </label>
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="Confirm Password">
+      </div>
+      <div class="w-full md:w-1/1 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          File
+        </label>
+        <input class="px-7 py-3"  type="file">
+          <img src="https://images.unsplash.com/photo-1581247227572-360cf3d83e00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
+               class="t-1 rounded-full h-32 w-32 "
+               alt=""/>
+      </div>-->
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+          Rol
+        </label>
+        <div class="relative">
+          <select formControlName='rol' name="rol" [(ngModel)]="user.rol" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+            <option>{{user.rol}}</option>
+            <option>Administrador</option>
+            <option>Estudiante</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button  (keypress)="update()" (click)="update()" type="submit"class="bg-pink-400  text-white font-bold py-2 px-10 rounded-full" name="button">Guardar</button>
+  </form>
+      </div>
+      </h1>
+    </section>

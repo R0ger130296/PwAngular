@@ -1,0 +1,135 @@
+<ngx-spinner bdColor="rgba(180,180,180,0.5)" size="large" color="#ff4242" type="ball-clip-rotate-multiple">
+</ngx-spinner>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<style>
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 5px;
+}
+
+@keyframes twinkle {
+  0% {
+    transform: scale(1, 1);
+    background: rgba(255, 255, 255, 0);
+    animation-timing-function: linear;
+  }
+  40% {
+    transform: scale(0.8, 0.8);
+    background: rgba(255, 255, 255, 1);
+    animation-timing-function: ease-out;
+  }
+  80% {
+    background: rgba(255, 255, 255, 0);
+    transform: scale(1, 1);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0);
+    transform: scale(1, 1);
+  }
+}
+</style>
+
+<section
+      class="homescreen m-0 flex flex-col w-screen justify-center bg-gray-800 h-screen text-gray-100 "
+    >
+      <nav>
+        <ul class="flex justify-between text-xl py-8 px-8 md:px-48 ">
+          <li>
+            Create User
+          </li>
+          <li>
+            <a href="https://github.com/Icesofty" target="_blank" rel="noopener noreferrer">Nuevo 💚 Usuario</a>
+          </li>
+        </ul>
+      </nav>
+
+      <h1>
+        <div class="px-40">
+        <form [formGroup]="createuserForm" class="w-full max-w-lg">
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Nombre
+        </label>
+        <input formControlName='nombre' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3  focus:outline-none focus:bg-white" type="text" placeholder="Roger">
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Apellido
+        </label>
+        <input formControlName='apellido' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="Cedeño">
+      </div>
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Email
+        </label>
+        <input formControlName='email' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3  focus:outline-none focus:bg-white" type="email" placeholder="roger@gmail.com">
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Edad
+        </label>
+        <input formControlName='edad' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  focus:outline-none focus:bg-white focus:border-gray-500"  type="number" placeholder="24">
+      </div>
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+          Password
+        </label>
+        <input formControlName='passw' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="Password">
+      </div>
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Confirm Password
+        </label>
+        <input formControlName='verifypassw' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  focus:outline-none focus:bg-white focus:border-gray-500"  type="password" placeholder="Confirm Password">
+      </div>
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        File
+      </label>
+      <input formControlName='file' (change)="changeFile($event)" name="file" class="px-5 py-3"  type="file">
+        <img src="{{verFile}}"
+             class="t-1 rounded-full h-32 w-32 "
+             alt=""/>
+             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                 Rol
+               </label>
+               <div class="relative">
+                 <select formControlName='rol' class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded  focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                   <option></option>
+                   <option>Estudiante</option>
+                   <option>Administrador</option>
+                 </select>
+                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                   <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+               </div>
+             </div>
+           </div>
+           <div class="flex-wrap mx-3 mb-2">
+               <button (keypress)="createUser()" (click)="createUser()" [disabled]="createuserForm.invalid" (click)="createUser()" type="submit"class="bg-pink-400  text-white font-bold py-2 px-5 rounded-full" name="button">Guardar</button>
+           </div>
+           </div>
+  </form>
+      </div>
+      </h1>
+    </section>
+<script>
+for (var i = 0; i < 100; i++) {
+  var star =
+    '<div class="star m-0" style="animation: twinkle ' +
+    (Math.random() * 5 + 5) +
+    's linear ' +
+    (Math.random() * 1 + 1) +
+    's infinite; top: ' +
+    Math.random() * $(window).height() +
+    'px; left: ' +
+    Math.random() * $(window).width() +
+    'px;"></div>';
+  $('.homescreen').append(star);
+}
+
+</script>
